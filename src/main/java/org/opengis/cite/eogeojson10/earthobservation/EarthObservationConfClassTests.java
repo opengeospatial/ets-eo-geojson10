@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 public class EarthObservationConfClassTests extends DataFixture{
     /**
      * Verifies conformance to /conf/earthobservation, Section 7.1
-     * @throws IOException 
+     * @throws IOException Thrown if the file cannot be read
      */
     @Test(description = "Implements /conf/earthobservation, Section 7.1")
     public void validateEarthObservationMetadata() throws IOException{

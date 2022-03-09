@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 public class GeometryConfClassTests extends DataFixture{
     /**
      * Verifies conformance to /conf/geometry, Section 7.4
+     * @throws IOException Thrown if the file cannot be read
      */
     @Test(description = "Implements /conf/geometry, Section 7.4")
     public void validateGeometry() throws IOException{

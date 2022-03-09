@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 public class MetadataInformationConfClassTests extends DataFixture{
     /**
      * Verifies conformance to /conf/metadata-information, Section 7.2
+	 * @throws IOException Thrown if the file cannot be read
      */
     @Test(description = "Implements /conf/metadata-information, Section 7.2")
     public void validateMetadataInformation()  throws IOException{

@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 public class AquisitionInformationConfClassTests extends DataFixture{
     /**
      * Verifies conformance to /conf/acquisition-information, Section 7.6
+	 * @throws IOException Thrown if the file cannot be read
      */
     @Test(description = "Implements /conf/acquisition-information, Section 7.6")
     public void validateAquisitionInformation() throws IOException{

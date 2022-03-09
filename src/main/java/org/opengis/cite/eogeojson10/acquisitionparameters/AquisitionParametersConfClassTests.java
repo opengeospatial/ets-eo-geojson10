@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 public class AquisitionParametersConfClassTests extends DataFixture{
     /**
      * Verifies conformance to /conf/acquisition-parameters, Section 7.6
+	 * @throws IOException Thrown if the file cannot be read
      */
     @Test(description = "Implements /conf/acquisition-parameters, Section 7.6")
     public void validateAquisitionParameters()  throws IOException{

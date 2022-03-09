@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 public class PropertiesConfClassTests extends DataFixture{
 	   /**
   * Verifies conformance to /conf/properties, Section 7.1.1
+		* @throws IOException Thrown if the file cannot be read
   */
  @Test(description = "Implements /conf/properties, Section 7.1.1")
  public void validateProperties()  throws IOException{

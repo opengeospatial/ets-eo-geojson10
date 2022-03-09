@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 public class EOCollectionConfClassTests extends DataFixture{
 	   /**
      * Verifies conformance to /conf/earthobservation-collection, Section 7.8
-	 * @throws IOException 
+		* @throws IOException Thrown if the file cannot be read
      */
     @Test(description = "Implements /conf/earthobservation-collection, Section 7.8")
     public void validateEarthObservationMetadataCollection() throws IOException{

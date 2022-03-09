@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 public class OfferingConfClassTests extends DataFixture{
     /**
      * Verifies conformance to /conf/offering, Section 7.1.4
+	 * @throws IOException Thrown if the file cannot be read
      */
     @Test(description = "Implements /conf/offering, Section 7.1.4")
     public void validateOffering() throws IOException{

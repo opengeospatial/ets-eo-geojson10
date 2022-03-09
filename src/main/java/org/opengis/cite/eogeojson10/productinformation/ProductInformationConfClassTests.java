@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 public class ProductInformationConfClassTests extends DataFixture{
     /**
      * Verifies conformance to /conf/product-information, Section 7.7
+	 * @throws IOException Thrown if the file cannot be read
      */
     @Test(description = "Implements /conf/product-information, Section 7.7")
     public void validateProductInformation() throws IOException{

@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 public class DataIdentificationConfClassTests extends DataFixture{
     /**
      * Verifies conformance to /conf/data-identification, Section 7.3
-     * @throws IOException 
+     * @throws IOException Thrown if the file cannot be read
      */
     @Test(description = "Implements /conf/data-identification, Section 7.3")
     public void validateDataIdentification() throws IOException{

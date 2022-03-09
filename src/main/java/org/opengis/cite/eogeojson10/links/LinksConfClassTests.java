@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 public class LinksConfClassTests extends DataFixture{
     /**
      * Verifies conformance to /conf/links, Section 7.1.2
-     * @throws IOException 
+	 * @throws IOException Thrown if the file cannot be read
      */
     @Test(description = "Implements /conf/links, Section 7.1.2")
     public void validateLinks() throws IOException{
