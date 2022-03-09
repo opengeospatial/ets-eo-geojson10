@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties version="1.0">
+    <comment>Sample test run arguments</comment>
+    <entry key="iut">http://localhost:8000/example-1-seasat-collection.json</entry>
+    <entry key="ics">level1</entry>
+</properties>

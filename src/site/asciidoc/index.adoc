@@ -1,0 +1,86 @@
+= EO GeoJSON 1.0 Conformance Test Suite
+
+== Scope
+
+This executable test suite (ETS) verifies the conformance of the implementation under test (IUT) with respect to the OGC EO GeoJSON 1.0 standard. Conformance testing is a kind of "black box" testing that examines the externally visible characteristics or behaviors of the IUT while disregarding any implementation details.
+
+Several conformance classes are defined in the principal specification; the ones
+listed below are covered by this test suite:
+
+* /conf/core, Sections 7.1 and Section 7.8
+* /conf/earthobservation, Section 7.1
+* /conf/properties, Section 7.1.1
+* /conf/links, Section 7.1.2
+* /conf/offering, Section 7.1.4
+* /conf/metadata-information, Section 7.2
+* /conf/data-identification, Section 7.3
+* /conf/geometry, Section 7.4
+* /conf/acquisition-information, Section 7.6
+* /conf/acquisition-parameters, Section 7.6
+* /conf/product-information, Section 7.7
+* /conf/earthobservation-collection, Section 7.8
+
+
+== Test requirements
+
+The documents listed below stipulate requirements that must be satisfied by a conforming implementation.
+
+1. https://docs.ogc.org/is/17-003r2/17-003r2.html[OGC 17-003r2,OGC EO Dataset Metadata GeoJSON(-LD) Encoding Standard 1.0]
+
+== Test suite structure
+
+The test suite definition file (testng.xml) is located in the root package, 
+`org.opengis.cite.eogeojson10`. A conformance class corresponds to a &lt;test&gt; element, each
+of which includes a set of test classes that contain the actual test methods. 
+The general structure of the test suite is shown in Table 1.
+
+.Test suite structure
+[cols="2,6a",options=header]
+|===
+|Conformance class
+|Test classes
+
+|	/conf/core	|	org.opengis.cite.eogeojson10.core.*
+|	/conf/earthobservation	|	org.opengis.cite.eogeojson10.earthobservation.*
+|	/conf/properties	|	org.opengis.cite.eogeojson10.properties.*
+|	/conf/links	|	org.opengis.cite.eogeojson10.links.*
+|	/conf/offering	|	org.opengis.cite.eogeojson10.offering.*
+|	/conf/metadata-information	|	org.opengis.cite.eogeojson10.metadatainformation.*
+|	/conf/data-identification	|	org.opengis.cite.eogeojson10.dataidentification.*
+|	/conf/geometry	|	org.opengis.cite.eogeojson10.geometry.*
+|	/conf/acquisition-information	|	org.opengis.cite.eogeojson10.acquisitioninformation.*
+|	/conf/acquisition-parameters	|	org.opengis.cite.eogeojson10.acquisitionparameters.*
+|	/conf/product-information	|	org.opengis.cite.eogeojson10.productinformation.*
+|	/conf/earthobservation-collection	|	org.opengis.cite.eogeojson10.earthobservationcollection.*
+
+|===
+
+The Javadoc documentation provides more detailed information about the test 
+methods that constitute the suite.
+
+include::how-to-run-the-tests.adoc[]
+
+== Using the REST API
+
+Using the REST API of the TEAM Engine requires some run arguments. These ate summarized in Table 2.
+The _Obligation_ descriptor can have the following values: M (mandatory), O (optional), or C (conditional).
+
+.Test run arguments
+[cols="1,1,1,6",options=header]
+|===
+|Name
+|Value domain
+|Obligation
+|Description
+
+|iut
+|URI
+|M
+|A URI that refers to the implementation under test or metadata about it. Ampersand ('&amp;') characters must be percent-encoded as '%26'.
+
+|ics
+|A comma-separated list of string values.
+|O
+|An implementation conformance statement that indicates which conformance classes or options are supported.
+
+|===

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Unpack the *-ctl-scripts.zip archive in the TE_BASE/scripts directory -->
+<!-- Add this entry to TE_BASE/config.xml (//organization/standard) -->
+<organization>
+  <name>OGC</name>
+  <standard>
+    <name>OGC EO Dataset Metadata GeoJSON</name>
+    <version>
+      <name>${spec-version}</name>
+      <suite>
+        <namespace-uri>http://www.opengis.net/cite/eo-geojson10</namespace-uri>
+        <prefix>tns</prefix>
+        <local-name>ets-eo-geojson10-${version}</local-name>
+        <title>ets-eo-geojson10 Conformance Test Suite</title>
+        <description>Tests for compliance to the OGC EO Dataset Metadata GeoJSON Encoding Standard.</description>        
+        <BasicConformanceClasses>
+          <conformanceClass>Core</conformanceClass>
+        </BasicConformanceClasses>        
+      </suite>
+      <revision>
+        <name>${project.version}</name>
+        <status>Beta</status>
+        <sources>
+          <source>eo-geojson10/${spec-version}/ctl</source>
+        </sources>
+        <webdir>eo-geojson10/${spec-version}/site</webdir>
+      </revision>
+    </version>
+  </standard>
+</organization>
