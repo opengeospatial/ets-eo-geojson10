@@ -2,6 +2,6 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties version="1.0">
     <comment>Sample test run arguments</comment>
-    <entry key="iut">http://localhost:8000/example-1-seasat.json</entry>
-    <entry key="col">http://localhost:8000/example-1-seasat-collection.json</entry>
+    <entry key="iut">https://raw.githubusercontent.com/opengeospatial/ets-eo-geojson10/main/src/test/resources/example-1-seasat.json</entry>
+    <entry key="col">https://raw.githubusercontent.com/opengeospatial/ets-eo-geojson10/main/src/test/resources/example-1-seasat-collection.json</entry>
 </properties>

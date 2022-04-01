@@ -60,12 +60,12 @@ public class VerifyTestNGController {
         this.testRunProps.storeToXML(outStream, "Integration test");
         Document testRunArgs = docBuilder.parse(new ByteArrayInputStream(
                 outStream.toByteArray()));
-        /*TestNGController controller = new TestNGController();
+        TestNGController controller = new TestNGController();
         Source results = controller.doTestRun(testRunArgs);
         String xpath = "/testng-results/@failed";
         XdmValue failed = XMLUtils.evaluateXPath2(results, xpath, null);
         int numFailed = Integer.parseInt(failed.getUnderlyingValue()
                 .getStringValue());
-        assertEquals("Unexpected number of fail verdicts.", 0, numFailed);*/
+        assertEquals("Unexpected number of fail verdicts.", 0, numFailed);
     }
 }
