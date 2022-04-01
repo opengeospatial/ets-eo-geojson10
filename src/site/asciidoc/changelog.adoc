@@ -1,7 +1,8 @@
 = Release Notes
 
-== ${project.version} (YYYY-MM-DD)
+== 0.1 (2022-04-01)
 
-The initial release implements the following test requirements:
-
-- all mandatory conformance classes (Class A, Class B)
+- https://github.com/ghobona/ets-eo-geojson10/issues/4[#4]: Add support for FeatureCollection validation
+- https://github.com/ghobona/ets-eo-geojson10/issues/3[#3]: Remove example atom url from HTML form
+- https://github.com/ghobona/ets-eo-geojson10/issues/2[#2]: Remove conformance class list from HTML test run form
+- https://github.com/ghobona/ets-eo-geojson10/issues/1[#1]: Configure basicConformanceClass

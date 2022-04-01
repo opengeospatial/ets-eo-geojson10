@@ -57,13 +57,13 @@
 
                <p>
                  <label for="doc">
-                   <h4 style="margin-bottom: 0.5em">Upload IUT</h4>
+                   <h4 style="margin-bottom: 0.5em">Upload JSON file containing a single GeoJSON Feature representing a single EarthObservation object</h4>
                  </label>
                  <input name="doc" id="doc" size="128" type="file" />
                </p>
                <p>
                  <label for="col">
-                   <h4 style="margin-bottom: 0.5em">Upload Collection IUT</h4>
+                   <h4 style="margin-bottom: 0.5em">Upload JSON file containing a single GeoJSON FeatureCollection representing a single EarthObservationCollection object</h4>
                  </label>
                  <input name="col" id="col" size="128" type="file" />
                </p>
