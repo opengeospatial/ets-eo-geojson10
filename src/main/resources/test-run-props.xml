@@ -3,4 +3,5 @@
 <properties version="1.0">
     <comment>Sample test run arguments</comment>
     <entry key="iut">http://localhost:8000/example-1-seasat.json</entry>
+    <entry key="col">http://localhost:8000/example-1-seasat-collection.json</entry>
 </properties>

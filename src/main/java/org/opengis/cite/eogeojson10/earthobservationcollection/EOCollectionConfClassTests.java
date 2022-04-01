@@ -33,8 +33,6 @@ public class EOCollectionConfClassTests extends DataFixture{
     		valid = false;
     	}
         
-        System.out.println("validateEarthObservationMetadataCollection()="+valid);
-        
         
         Assert.assertTrue(valid,
                 "Validation failed because there is no type field equals to FeatureCollection. ");
