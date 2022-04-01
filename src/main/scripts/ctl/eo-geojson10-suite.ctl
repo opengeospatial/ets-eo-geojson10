@@ -22,7 +22,7 @@
      <ctl:description>Describe scope of testing.</ctl:description>
      <ctl:starting-test>tns:Main</ctl:starting-test>
    </ctl:suite>
- 
+
    <ctl:test name="tns:Main">
       <ctl:assertion>The test subject satisfies all applicable constraints.</ctl:assertion>
 	  <ctl:code>
@@ -51,21 +51,10 @@
                </ul>
              </div>
              <fieldset style="background:#ccffff">
-               <legend style="font-family: sans-serif; color: #000099; 
-			                 background-color:#F0F8FF; border-style: solid; 
+               <legend style="font-family: sans-serif; color: #000099;
+			                 background-color:#F0F8FF; border-style: solid;
                        border-width: medium; padding:4px">Implementation under test</legend>
-               <p>
-                 <label for="uri">
-                   <h4 style="margin-bottom: 0.5em">Location of IUT (absolute http: or file: URI)</h4>
-                 </label>
-                 <input id="uri" name="uri" size="128" type="text" value="" />
-               </p>
-               <p>
-                 <label for="col">
-                   <h4 style="margin-bottom: 0.5em">Location of Collection IUT (absolute http: or file: URI)</h4>
-                 </label>
-                 <input id="col" name="col" size="128" type="text" value="" />
-               </p>               
+
                <p>
                  <label for="doc">
                    <h4 style="margin-bottom: 0.5em">Upload IUT</h4>
@@ -73,19 +62,20 @@
                  <input name="doc" id="doc" size="128" type="file" />
                </p>
                <p>
-                 <label for="coldoc">
+                 <label for="col">
                    <h4 style="margin-bottom: 0.5em">Upload Collection IUT</h4>
                  </label>
-                 <input name="coldoc" id="coldoc" size="128" type="file" />
-               </p>               
+                 <input name="col" id="col" size="128" type="file" />
+               </p>
              </fieldset>
              <p>
-               <input class="form-button" type="submit" value="Start"/> | 
+               <input class="form-button" type="submit" value="Start"/> |
                <input class="form-button" type="reset" value="Clear"/>
              </p>
            </ctl:form>
         </xsl:variable>
         <xsl:variable name="iut-file" select="$form-data//value[@key='doc']/ctl:file-entry/@full-path" />
+        <xsl:variable name="col-file" select="$form-data//value[@key='col']/ctl:file-entry/@full-path" />        
 	      <xsl:variable name="test-run-props">
 		    <properties version="1.0">
           <entry key="iut">
@@ -98,6 +88,16 @@
               </xsl:otherwise>
             </xsl:choose>
           </entry>
+          <entry key="col">
+            <xsl:choose>
+              <xsl:when test="empty($col-file)">
+                <xsl:value-of select="normalize-space($form-data/values/value[@key='uri'])"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:copy-of select="concat('file:///', $col-file)" />
+              </xsl:otherwise>
+            </xsl:choose>
+          </entry>          
           <entry key="ics"><xsl:value-of select="$form-data/values/value[@key='level']"/></entry>
 		    </properties>
 		   </xsl:variable>
@@ -117,7 +117,7 @@
       <xsl:variable name="summary-xsl" select="tec:findXMLResource($te:core, '/testng-summary.xsl')" />
       <ctl:message>
         <xsl:value-of select="saxon:transform(saxon:compile-stylesheet($summary-xsl), $test-results)"/>
-See detailed test report in the TE_BASE/users/<xsl:value-of 
+See detailed test report in the TE_BASE/users/<xsl:value-of
 select="concat(substring-after($testRunDir, 'users/'), '/html/')" /> directory.
         </ctl:message>
         <xsl:if test="xs:integer($test-results/testng-results/@failed) gt 0">

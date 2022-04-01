@@ -59,7 +59,7 @@ public class CoreTests extends DataFixture {
     @Test(description = "Implements /conf/core, Sections 7.1 and Section 7.8")
     public void validateEOMetadataGeoJSONValidPerSchema(){
         
-    	String errorMessage = null;
+    	StringBuffer errorMessage = new StringBuffer();
 
         String schemaToApply = "/org/opengis/cite/eogeojson10/jsonschema/eo-geojson-schema-standalone.json";
 
@@ -70,27 +70,66 @@ public class CoreTests extends DataFixture {
         JSONObject rawSchema = new JSONObject(new JSONTokener(inputStream));
         Schema schema = SchemaLoader.load(rawSchema);
         
+        //------Test the Feature
         
         try {
         	
         schema.validate(readJSONObjectFromFile(new File(testSubject))); // throws a ValidationException if this object is invalid
-        System.out.println("CHK 1");
+     
         valid = true;
         }
         catch(Exception ex) {
-        	errorMessage = ex.getMessage();
-        	System.out.println("CHK 2 "+errorMessage);
+        	errorMessage.append("Validation of single feature document failed because "+ex.getMessage()+"\n");
+       
         	valid = false;
         }
 
-        Assert.assertTrue(valid,
-                "Validation failed because "+errorMessage+ " . ");
-
+        if(valid==false) {
+           Assert.assertTrue(valid,
+                "Validation failed. "+errorMessage.toString()+ " . ");
+        }
+        
+        //------Test the Feature Collection
+        
+        JSONObject jo  = null;
+        boolean validCol = false;
+        try {
+        
+        jo  = readJSONObjectFromFile(new File(collectionTestSubject));
+        
+        
+        if(jo.has("type")) {
+        	
+        	if(jo.get("type").equals("FeatureCollection")) {
+        		schema.validate(jo); // throws a ValidationException if this object is invalid
+        		validCol = true;
+        	}
+        	else {
+        		validCol = false;
+        		errorMessage.append("Validation of feature collection did not have type property value that equals 'FeatureCollection'\n");
+        	}
+        }
+    	else {
+    		validCol = false;
+    		errorMessage.append("Validation of feature collection did not have type property\n");
+    	}
+        
+        }
+        catch(Exception ex)
+        {
+        	errorMessage.append("Validation of Feature Collection failed because "+ex.getMessage()+"\n");
+        
+        	validCol = false;
+        }
+        
+        if(validCol==false) {
+        Assert.assertTrue(validCol,
+                "Validation failed. "+errorMessage.toString());        
+        }
+        
     }
     
 
-    
-   
 
  
 }
