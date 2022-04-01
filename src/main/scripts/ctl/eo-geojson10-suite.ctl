@@ -61,11 +61,23 @@
                  <input id="uri" name="uri" size="128" type="text" value="" />
                </p>
                <p>
+                 <label for="col">
+                   <h4 style="margin-bottom: 0.5em">Location of Collection IUT (absolute http: or file: URI)</h4>
+                 </label>
+                 <input id="col" name="col" size="128" type="text" value="" />
+               </p>               
+               <p>
                  <label for="doc">
                    <h4 style="margin-bottom: 0.5em">Upload IUT</h4>
                  </label>
                  <input name="doc" id="doc" size="128" type="file" />
                </p>
+               <p>
+                 <label for="coldoc">
+                   <h4 style="margin-bottom: 0.5em">Upload Collection IUT</h4>
+                 </label>
+                 <input name="coldoc" id="coldoc" size="128" type="file" />
+               </p>               
              </fieldset>
              <p>
                <input class="form-button" type="submit" value="Start"/> | 

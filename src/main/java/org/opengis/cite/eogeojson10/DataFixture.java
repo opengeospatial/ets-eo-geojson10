@@ -17,6 +17,7 @@ import org.w3c.dom.Document;
 public class DataFixture {
 
     protected String testSubject;
+    protected String collectionTestSubject;    
 
     /**
      * Obtains the test subject from the ISuite context. 
@@ -31,6 +32,13 @@ public class DataFixture {
         if (null != obj) {
             this.testSubject = obj.toString();
         }
+        
+        //-----
+        Object collectionObj = testContext.getSuite().getAttribute(SuiteAttribute.COL_TEST_SUBJ_FILE.getName());
+        
+        if (null != collectionObj) {
+            this.collectionTestSubject = collectionObj.toString();
+        }        
     }
 
     /**

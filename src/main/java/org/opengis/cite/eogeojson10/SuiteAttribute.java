@@ -22,7 +22,10 @@ public enum SuiteAttribute {
      */
     TEST_SUBJECT("testSubject", Document.class),
     /**
-     * A File containing the test subject or a description of it.
+     * A File containing the feature collection test subject or a description of it.
+     */
+    COL_TEST_SUBJ_FILE("collectionTestSubjectFile", File.class),    /**
+     * A File containing the feature test subject or a description of it.
      */
     TEST_SUBJ_FILE("testSubjectFile", File.class);
     private final Class attrType;

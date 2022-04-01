@@ -16,7 +16,7 @@ public class EOCollectionConfClassTests extends DataFixture{
      */
     @Test(description = "Implements /conf/earthobservation-collection, Section 7.8")
     public void validateEarthObservationMetadataCollection() throws IOException{
-        JSONObject jo  = readJSONObjectFromFile(new File(testSubject));
+        JSONObject jo  = readJSONObjectFromFile(new File(collectionTestSubject));
         
         boolean valid = true;
         
@@ -32,6 +32,8 @@ public class EOCollectionConfClassTests extends DataFixture{
     	else {
     		valid = false;
     	}
+        
+        System.out.println("validateEarthObservationMetadataCollection()="+valid);
         
         
         Assert.assertTrue(valid,

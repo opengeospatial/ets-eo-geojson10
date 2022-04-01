@@ -9,6 +9,11 @@ public enum TestRunArg {
      * An absolute URI that refers to a representation of the test subject or
      * metadata about it.
      */
+    COL,    
+    /**
+     * An absolute URI that refers to a representation of the test subject or
+     * metadata about it.
+     */
     IUT;
 
     @Override

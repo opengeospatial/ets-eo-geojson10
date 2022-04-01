@@ -165,5 +165,9 @@ public class TestNGController implements TestSuiteController {
             throw new IllegalArgumentException(
                     String.format("Missing argument: '%s' must be present.", TestRunArg.IUT));
         }
+        if (!args.containsKey(TestRunArg.COL.toString())) {
+            throw new IllegalArgumentException(
+                    String.format("Missing argument: '%s' must be present.", TestRunArg.COL));
+        }        
     }
 }

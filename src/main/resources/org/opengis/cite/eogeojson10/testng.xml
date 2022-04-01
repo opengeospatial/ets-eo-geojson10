@@ -3,6 +3,7 @@
 <suite name="eo-geojson10-${version}" verbose="0"
 	configfailurepolicy="continue">
 	<parameter name="iut" value="" />
+	<parameter name="col" value="" />
 	<parameter name="ics" value="" />
 
 	<listeners>
