@@ -2,7 +2,16 @@
 
 == 0.1 (2022-04-01)
 
-- https://github.com/ghobona/ets-eo-geojson10/issues/4[#4]: Add support for FeatureCollection validation
-- https://github.com/ghobona/ets-eo-geojson10/issues/3[#3]: Remove example atom url from HTML form
-- https://github.com/ghobona/ets-eo-geojson10/issues/2[#2]: Remove conformance class list from HTML test run form
-- https://github.com/ghobona/ets-eo-geojson10/issues/1[#1]: Configure basicConformanceClass
+- https://github.com/opengeospatial/ets-eo-geojson10/issues/1[#1]: Update dependencies to include security fixes
+- Implemented test for /conf/core, Sections 7.1 and Section 7.8
+- Implemented test for /conf/earthobservation, Section 7.1
+- Implemented test for /conf/properties, Section 7.1.1
+- Implemented test for /conf/links, Section 7.1.2
+- Implemented test for /conf/offering, Section 7.1.4
+- Implemented test for /conf/metadata-information, Section 7.2
+- Implemented test for /conf/data-identification, Section 7.3
+- Implemented test for /conf/geometry, Section 7.4
+- Implemented test for /conf/acquisition-information, Section 7.6
+- Implemented test for /conf/acquisition-parameters, Section 7.6
+- Implemented test for /conf/product-information, Section 7.7
+- Implemented test for /conf/earthobservation-collection, Section 7.8
