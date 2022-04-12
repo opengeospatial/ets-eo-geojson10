@@ -1,0 +1,14 @@
+org.opengis.cite.eogeojson10
+org.opengis.cite.eogeojson10.acquisitioninformation
+org.opengis.cite.eogeojson10.acquisitionparameters
+org.opengis.cite.eogeojson10.core
+org.opengis.cite.eogeojson10.dataidentification
+org.opengis.cite.eogeojson10.earthobservation
+org.opengis.cite.eogeojson10.earthobservationcollection
+org.opengis.cite.eogeojson10.geometry
+org.opengis.cite.eogeojson10.links
+org.opengis.cite.eogeojson10.metadatainformation
+org.opengis.cite.eogeojson10.offering
+org.opengis.cite.eogeojson10.productinformation
+org.opengis.cite.eogeojson10.properties
+org.opengis.cite.eogeojson10.util
