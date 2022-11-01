@@ -3,7 +3,7 @@ package org.opengis.cite.eogeojson10.core;
 import org.everit.json.schema.Schema;
 import org.everit.json.schema.loader.SchemaLoader;
 import org.json.JSONObject;
-import org.json.JSONTokener;
+
 import org.opengis.cite.eogeojson10.DataFixture;
 import org.opengis.cite.eogeojson10.ErrorMessage;
 import org.opengis.cite.eogeojson10.ErrorMessageKeys;
@@ -15,7 +15,6 @@ import io.restassured.response.Response;
 import org.everit.json.schema.Schema;
 import org.everit.json.schema.loader.SchemaLoader;
 import org.json.JSONObject;
-import org.json.JSONTokener;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.SkipException;
@@ -67,14 +66,16 @@ public class CoreTests extends DataFixture {
         boolean valid = false;
         InputStream inputStream = getClass()
                 .getResourceAsStream(schemaToApply);
-        JSONObject rawSchema = new JSONObject(new JSONTokener(inputStream));
-        Schema schema = SchemaLoader.load(rawSchema);
-        
+    
+   
+        Schema schema = null;
         //------Test the Feature
         
         try {
+            JSONObject rawSchema = new JSONObject(convertInputStreamToString(inputStream));
+            schema = SchemaLoader.load(rawSchema);
         	
-        schema.validate(readJSONObjectFromFile(new File(testSubject))); // throws a ValidationException if this object is invalid
+            schema.validate(readJSONObjectFromFile(new File(testSubject))); // throws a ValidationException if this object is invalid
      
         valid = true;
         }

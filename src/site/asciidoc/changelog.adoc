@@ -1,5 +1,9 @@
 = Release Notes
 
+== 0.2 (2022-11-01)
+
+- https://github.com/opengeospatial/ets-eo-geojson10/issues/3[#3]: Fixes JSONTokener NoSuchMethod error
+
 == 0.1 (2022-04-01)
 
 - https://github.com/opengeospatial/ets-eo-geojson10/issues/1[#1]: Update dependencies to include security fixes
