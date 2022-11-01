@@ -1,8 +1,10 @@
 package org.opengis.cite.eogeojson10;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
@@ -17,7 +19,8 @@ import org.w3c.dom.Document;
 public class DataFixture {
 
     protected String testSubject;
-    protected String collectionTestSubject;    
+    protected String collectionTestSubject;   
+    protected final int DEFAULT_BUFFER_SIZE = 8192;
 
     /**
      * Obtains the test subject from the ISuite context. 
@@ -62,6 +65,23 @@ public class DataFixture {
 
             return new JSONObject(scanner.hasNext() ? scanner.next() : "");
         }
+
+    }    
+    
+    // from https://mkyong.com/java/how-to-convert-inputstream-to-string-in-java/
+    public String convertInputStreamToString(InputStream is) throws IOException {
+
+        ByteArrayOutputStream result = new ByteArrayOutputStream();
+        byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
+        int length;
+        while ((length = is.read(buffer)) != -1) {
+            result.write(buffer, 0, length);
+        }
+
+
+
+        return result.toString("UTF-8");
+
 
     }    
 }
