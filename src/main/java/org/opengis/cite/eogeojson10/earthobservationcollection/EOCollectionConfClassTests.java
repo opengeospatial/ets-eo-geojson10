@@ -7,7 +7,6 @@ import java.io.InputStream;
 import org.everit.json.schema.Schema;
 import org.everit.json.schema.loader.SchemaLoader;
 import org.json.JSONObject;
-import org.json.JSONTokener;
 import org.opengis.cite.eogeojson10.DataFixture;
 import org.testng.Assert;
 import org.testng.SkipException;
@@ -24,7 +23,7 @@ public class EOCollectionConfClassTests extends DataFixture{
         String schemaToApply = "/org/opengis/cite/eogeojson10/jsonschema/eo-geojson-schema-standalone.json";    	
         InputStream inputStream = getClass()
                 .getResourceAsStream(schemaToApply);
-        JSONObject rawSchema = new JSONObject(new JSONTokener(inputStream));    	
+        JSONObject rawSchema = new JSONObject(convertInputStreamToString(inputStream));    	
     	StringBuffer errorMessage = new StringBuffer();
         Schema schema = SchemaLoader.load(rawSchema);     
         JSONObject jo  = null;
