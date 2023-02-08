@@ -1,9 +1,11 @@
 package org.opengis.cite.eogeojson10.core;
 
-import org.everit.json.schema.Schema;
-import org.everit.json.schema.loader.SchemaLoader;
-import org.json.JSONObject;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.networknt.schema.JsonSchema;
+import com.networknt.schema.ValidationMessage;
 
+
+import org.opengis.cite.eogeojson10.BaseJsonSchemaValidatorTest;
 import org.opengis.cite.eogeojson10.DataFixture;
 import org.opengis.cite.eogeojson10.ErrorMessage;
 import org.opengis.cite.eogeojson10.ErrorMessageKeys;
@@ -12,9 +14,7 @@ import io.restassured.http.ContentType;
 import io.restassured.http.Method;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import org.everit.json.schema.Schema;
-import org.everit.json.schema.loader.SchemaLoader;
-import org.json.JSONObject;
+
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.SkipException;
@@ -64,53 +64,72 @@ public class CoreTests extends DataFixture {
 
 
         boolean valid = false;
-        InputStream inputStream = getClass()
+
+        JsonSchema schema = null;
+        BaseJsonSchemaValidatorTest tester = new BaseJsonSchemaValidatorTest();
+
+        StringBuffer sb = new StringBuffer();
+
+        InputStream inputStream = tester.getClass()
                 .getResourceAsStream(schemaToApply);
-    
-   
-        Schema schema = null;
-        //------Test the Feature
-        
+
         try {
-            JSONObject rawSchema = new JSONObject(convertInputStreamToString(inputStream));
-            schema = SchemaLoader.load(rawSchema);
-        	
-            schema.validate(readJSONObjectFromFile(new File(testSubject))); // throws a ValidationException if this object is invalid
-     
-        valid = true;
-        }
-        catch(Exception ex) {
-        	errorMessage.append("Validation of single feature document failed because "+ex.getMessage()+"\n");
-       
-        	valid = false;
+            JsonNode schemaNode = tester.getJsonNodeFromStringContent(tester.otherConvertInputStreamToString(inputStream));
+            schema = tester.getJsonSchemaFromJsonNodeAutomaticVersion(schemaNode);
+
+            schema.initializeValidators();
+
+            JsonNode node = tester.getJsonNodeFromStringContent(tester.otherConvertInputStreamToString(new FileInputStream(testSubject)));
+            Set<ValidationMessage> errors = schema.validate(node);
+
+
+
+            Iterator it = errors.iterator();
+            while(it.hasNext())
+            {
+                valid = false;
+                String errorText = " "+it.next();
+                sb.append(errorText+".\n");
+                errorMessage.append(errorText+".\n");
+
+            }
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
 
-        if(valid==false) {
-           Assert.assertTrue(valid,
-                "Validation failed. "+errorMessage.toString()+ " . ");
-        }
+
+        ///---
+   
+
         
         //------Test the Feature Collection
-        
-        JSONObject jo  = null;
+
+        JsonNode jo  = null;
         boolean validCol = false;
         try {
-        
-        jo  = readJSONObjectFromFile(new File(collectionTestSubject));
-        
+
+
+          jo = tester.getJsonNodeFromStringContent(tester.otherConvertInputStreamToString(new FileInputStream(collectionTestSubject)));
+
         
         if(jo.has("type")) {
         	
-        	if(jo.get("type").equals("FeatureCollection")) {
-        		schema.validate(jo); // throws a ValidationException if this object is invalid
+        	if(jo.get("type").textValue().equals("FeatureCollection")) {
+                Set<ValidationMessage> errors = schema.validate(jo); // throws a ValidationException if this object is invalid
+                if(errors.size()>0) errorMessage.append("CoreTests validation error -> "+errors.toString()+".");
         		validCol = true;
+
         	}
         	else {
+
         		validCol = false;
         		errorMessage.append("Validation of feature collection did not have type property value that equals 'FeatureCollection'\n");
         	}
         }
     	else {
+
     		validCol = false;
     		errorMessage.append("Validation of feature collection did not have type property\n");
     	}
@@ -118,18 +137,19 @@ public class CoreTests extends DataFixture {
         }
         catch(Exception ex)
         {
+
         	errorMessage.append("Validation of Feature Collection failed because "+ex.getMessage()+"\n");
         
         	validCol = false;
         }
         
-        if(validCol==false) {
+        if(validCol==false && valid==false) {
+
         Assert.assertTrue(validCol,
                 "Validation failed. "+errorMessage.toString());        
         }
         
     }
-    
 
 
  

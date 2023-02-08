@@ -1,9 +1,12 @@
 package org.opengis.cite.eogeojson10.geometry;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
-import org.json.JSONObject;
+import com.fasterxml.jackson.databind.JsonNode;
+
+import org.opengis.cite.eogeojson10.BaseJsonSchemaValidatorTest;
 import org.opengis.cite.eogeojson10.DataFixture;
 import org.testng.Assert;
 import org.testng.SkipException;
@@ -16,7 +19,9 @@ public class GeometryConfClassTests extends DataFixture{
      */
     @Test(description = "Implements /conf/geometry, Section 7.4")
     public void validateGeometry() throws IOException{
-        JSONObject jo  = readJSONObjectFromFile(new File(testSubject));        
+        BaseJsonSchemaValidatorTest tester = new BaseJsonSchemaValidatorTest();
+        JsonNode jo = tester.getJsonNodeFromStringContent(tester.otherConvertInputStreamToString(new FileInputStream(new File(testSubject))));
+
         String[] mandatoryFields = {"geometry"};
         
         boolean valid = true;

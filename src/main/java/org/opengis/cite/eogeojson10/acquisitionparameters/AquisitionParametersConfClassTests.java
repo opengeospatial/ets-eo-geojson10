@@ -1,10 +1,13 @@
 package org.opengis.cite.eogeojson10.acquisitionparameters;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+
+import org.opengis.cite.eogeojson10.BaseJsonSchemaValidatorTest;
 import org.opengis.cite.eogeojson10.DataFixture;
 import org.testng.Assert;
 import org.testng.SkipException;
@@ -19,18 +22,21 @@ public class AquisitionParametersConfClassTests extends DataFixture{
     public void validateAquisitionParameters()  throws IOException{
         boolean valid = true;
         StringBuffer sb = new StringBuffer();
-   	 
-   	 JSONObject jo  = readJSONObjectFromFile(new File(testSubject));  
-        
-        if(jo.has("properties")) {
-       	 
-       	 JSONObject propertiesJO = jo.getJSONObject("properties");
+
+		BaseJsonSchemaValidatorTest tester = new BaseJsonSchemaValidatorTest();
+		JsonNode jo = tester.getJsonNodeFromStringContent(tester.otherConvertInputStreamToString(new FileInputStream(new File(testSubject))));
+
+
+		if(jo.has("properties")) {
+
+			JsonNode propertiesJO = jo.get("properties");
 	       	 if(propertiesJO.has("acquisitionInformation")) {
 	       		
 		        //-------------------
-	       		JSONArray acquisitionInformationJO = propertiesJO.getJSONArray("acquisitionInformation");
-	       		for(int i=0; i < acquisitionInformationJO.length(); i++) {
-		       		JSONObject acquisitionInformationJOItem = (JSONObject) acquisitionInformationJO.get(i);
+
+				 ArrayNode acquisitionInformationJO = (ArrayNode) propertiesJO.get("acquisitionInformation");
+	       		for(int i=0; i < acquisitionInformationJO.size(); i++) {
+					JsonNode acquisitionInformationJOItem = acquisitionInformationJO.get(i);
 		       		if(acquisitionInformationJOItem.has("acquisitionParameters")) {
 		       		   //do nothing
 		       		}
