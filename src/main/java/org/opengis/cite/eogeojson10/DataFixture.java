@@ -8,7 +8,6 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
-import org.json.JSONObject;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeClass;
 import org.w3c.dom.Document;
@@ -56,17 +55,7 @@ public class DataFixture {
         this.testSubject = testSubject;
     }
     
-    public JSONObject readJSONObjectFromFile(File filePath) throws IOException {
 
-        FileInputStream is = new FileInputStream(filePath);
-        try ( Scanner scanner = new Scanner(is,
-                StandardCharsets.UTF_8.toString())) {
-            scanner.useDelimiter("\\A");
-
-            return new JSONObject(scanner.hasNext() ? scanner.next() : "");
-        }
-
-    }    
     
     // from https://mkyong.com/java/how-to-convert-inputstream-to-string-in-java/
     public String convertInputStreamToString(InputStream is) throws IOException {
