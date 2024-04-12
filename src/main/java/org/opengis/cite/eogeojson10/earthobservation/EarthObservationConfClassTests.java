@@ -1,9 +1,12 @@
 package org.opengis.cite.eogeojson10.earthobservation;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
-import org.json.JSONObject;
+import com.fasterxml.jackson.databind.JsonNode;
+
+import org.opengis.cite.eogeojson10.BaseJsonSchemaValidatorTest;
 import org.opengis.cite.eogeojson10.DataFixture;
 import org.testng.Assert;
 import org.testng.SkipException;
@@ -16,7 +19,9 @@ public class EarthObservationConfClassTests extends DataFixture{
      */
     @Test(description = "Implements /conf/earthobservation, Section 7.1")
     public void validateEarthObservationMetadata() throws IOException{
-        JSONObject jo  = readJSONObjectFromFile(new File(testSubject));        
+        BaseJsonSchemaValidatorTest tester = new BaseJsonSchemaValidatorTest();
+        JsonNode jo = tester.getJsonNodeFromStringContent(tester.otherConvertInputStreamToString(new FileInputStream(new File(testSubject))));
+
         String[] mandatoryFields = {"type","id","geometry","properties"};
         
         boolean valid = true;

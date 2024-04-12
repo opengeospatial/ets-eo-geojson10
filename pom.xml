@@ -115,12 +115,19 @@
   <artifactId>geoapi-pending</artifactId>
   <version>3.1-M04</version>
 </dependency>
+  <dependency>
+    <groupId>com.networknt</groupId>
+    <artifactId>json-schema-validator</artifactId>
+    <version>1.0.76</version>
+  </dependency>
+  <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+  <dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.14.2</version>
+  </dependency>
 
-<dependency>
-  <groupId>com.github.erosb</groupId>
-  <artifactId>everit-json-schema</artifactId>
-  <version>1.14.1</version>
-</dependency>
+
 
   <dependency>
     <groupId>org.geotoolkit</groupId>

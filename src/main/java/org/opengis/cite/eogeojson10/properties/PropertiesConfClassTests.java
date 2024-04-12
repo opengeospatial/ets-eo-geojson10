@@ -1,9 +1,12 @@
 package org.opengis.cite.eogeojson10.properties;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 
-import org.json.JSONObject;
+import com.fasterxml.jackson.databind.JsonNode;
+
+import org.opengis.cite.eogeojson10.BaseJsonSchemaValidatorTest;
 import org.opengis.cite.eogeojson10.DataFixture;
 import org.testng.Assert;
 import org.testng.SkipException;
@@ -20,14 +23,16 @@ public class PropertiesConfClassTests extends DataFixture{
      boolean valid = true;
      StringBuffer sb = new StringBuffer();
      String[] mandatoryFields = {"links","status","acquisitionInformation"};
-	 
-	 JSONObject jo  = readJSONObjectFromFile(new File(testSubject));  
-     
-     
-     
-     if(jo.has("properties")) {
+
+	 BaseJsonSchemaValidatorTest tester = new BaseJsonSchemaValidatorTest();
+	 JsonNode jo = tester.getJsonNodeFromStringContent(tester.otherConvertInputStreamToString(new FileInputStream(new File(testSubject))));
+
+
+
+
+	 if(jo.has("properties")) {
     	 
-    	 JSONObject propertiesJO = jo.getJSONObject("properties");
+    	 JsonNode propertiesJO = jo.get("properties");
     	  for(String prop:mandatoryFields)
     	  {
     	     	if(propertiesJO.has(prop)!=true) {
