@@ -123,7 +123,7 @@
       <configuration>
         <archive>
           <manifest>
-            <mainClass>org.opengis.cite.ogcapiedr10.TestNGController</mainClass>
+            <mainClass>org.opengis.cite.eogeojson10.TestNGController</mainClass>
           </manifest>
         </archive>
         <descriptors>
