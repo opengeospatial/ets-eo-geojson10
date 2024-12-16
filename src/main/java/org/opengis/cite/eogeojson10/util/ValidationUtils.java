@@ -29,6 +29,9 @@ import org.w3c.dom.ls.LSResourceResolver;
  */
 public class ValidationUtils {
 
+	/**
+	 * ROOT_PKG = "/org/opengis/cite/eogeojson10/"
+	 */
 	static final String ROOT_PKG = "/org/opengis/cite/eogeojson10/";
 
 	private static final XMLCatalogResolver SCH_RESOLVER = initCatalogResolver();

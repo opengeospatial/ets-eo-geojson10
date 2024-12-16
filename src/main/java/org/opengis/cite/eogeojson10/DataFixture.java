@@ -17,10 +17,19 @@ import org.testng.annotations.BeforeClass;
  */
 public class DataFixture {
 
+	/**
+	 * testSubject
+	 */
 	protected String testSubject;
 
+	/**
+	 * collectionTestSubject
+	 */
 	protected String collectionTestSubject;
 
+	/**
+	 * DEFAULT_BUFFER_SIZE = 8192
+	 */
 	protected final int DEFAULT_BUFFER_SIZE = 8192;
 
 	/**
