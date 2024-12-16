@@ -9,12 +9,10 @@ import java.util.logging.Level;
 import org.opengis.cite.eogeojson10.util.ClientUtils;
 import org.opengis.cite.eogeojson10.util.TestSuiteLogger;
 import org.opengis.cite.eogeojson10.util.URIUtils;
-import org.opengis.cite.eogeojson10.util.XMLUtils;
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
-import org.w3c.dom.Document;
 
-import com.sun.jersey.api.client.Client;
+import jakarta.ws.rs.client.Client;
 
 /**
  * A listener that performs various tasks before and after a test suite is run,
