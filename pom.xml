@@ -13,17 +13,17 @@
 
   <name>EO GeoJSON 1.0 Conformance Test Suite</name>
   <description>Describe purpose of test suite.</description>
-  <url>http://opengeospatial.github.io/ets-eo-geojson10/</url>
+  <url>https://opengeospatial.github.io/ets-eo-geojson10/</url>
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
-      <url>http://opensource.org/licenses/Apache-2.0</url>
+      <url>https://opensource.org/licenses/Apache-2.0</url>
     </license>
   </licenses>
 
   <organization>
     <name>Open Geospatial Consortium</name>
-    <url>http://www.opengeospatial.org/</url>
+    <url>https://www.ogc.org/</url>
   </organization>
   <scm>
     <connection>scm:git:https://github.com/opengeospatial/ets-eo-geojson10.git</connection>
@@ -37,16 +37,14 @@
   </issueManagement>
   <developers>
     <developer>
-      <name>Alpha Beta</name>
-      <url>https://github.com/</url>
-      <timezone>UTC</timezone>
+      <name>Dirk Stenger</name>
+      <url>https://github.com/dstenger</url>
     </developer>
   </developers>
 
   <properties>
     <ets-code>eo-geojson10</ets-code>
     <spec-version>1.0</spec-version>
-    <docker.teamengine.version>5.4</docker.teamengine.version>
   </properties>
 
 <dependencies>
@@ -65,6 +63,10 @@
       <exclusion>
         <groupId>com.sun.xml.bind</groupId>
         <artifactId>jaxb-osgi</artifactId>
+      </exclusion>
+      <exclusion>
+        <artifactId>commons-logging</artifactId>
+        <groupId>commons-logging</groupId>
       </exclusion>
     </exclusions>
   </dependency>
@@ -90,15 +92,19 @@
     <artifactId>jadler-jetty</artifactId>
     <scope>test</scope>
   </dependency>
-  <!-- https://mvnrepository.com/artifact/org.opengis/geoapi -->
   <dependency>
     <groupId>org.opengis</groupId>
     <artifactId>geoapi-pending</artifactId>
   </dependency>
-
     <dependency>
       <groupId>com.github.erosb</groupId>
       <artifactId>everit-json-schema</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>joda-time</artifactId>
+          <groupId>joda-time</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.opengis.cite</groupId>
@@ -107,14 +113,18 @@
     <dependency>
       <groupId>org.glassfish.jersey.connectors</groupId>
       <artifactId>jersey-apache-connector</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>commons-logging</artifactId>
+          <groupId>commons-logging</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
-
 </dependencies>
 
 <build>
   <plugins>
     <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-assembly-plugin</artifactId>
       <configuration>
         <archive>
@@ -122,22 +132,13 @@
             <mainClass>org.opengis.cite.eogeojson10.TestNGController</mainClass>
           </manifest>
         </archive>
-        <descriptors>
-          <descriptor>${basedir}/src/assembly/deps.xml</descriptor>
-          <descriptor>${basedir}/src/assembly/ctl-scripts.xml</descriptor>
-          <descriptor>${basedir}/src/assembly/aio.xml</descriptor>
-        </descriptors>
       </configuration>
-      <executions>
-        <execution>
-          <phase>package</phase>
-          <goals>
-            <goal>single</goal>
-          </goals>
-        </execution>
-      </executions>
+    </plugin>
+    <plugin>
+      <artifactId>maven-scm-publish-plugin</artifactId>
     </plugin>
   </plugins>
+
   <pluginManagement>
     <plugins>
       <plugin>
@@ -146,28 +147,6 @@
         <configuration>
           <images>
             <image>
-              <name>ogccite/${project.artifactId}</name>
-              <build>
-                <dockerFileDir>${project.basedir}/src/docker</dockerFileDir>
-                <tags>
-                  <tag>${project.version}-teamengine-${docker.teamengine.version}</tag>
-                </tags>
-                <assembly>
-                  <inline>
-                    <fileSets>
-                      <fileSet>
-                        <directory>${project.build.directory}</directory>
-                        <outputDirectory>.</outputDirectory>
-                        <includes>
-                          <include>dependency/*teamengine-*.war</include>
-                          <include>dependency/*teamengine-*.zip</include>
-                          <include>*ets-*.zip</include>
-                        </includes>
-                      </fileSet>
-                    </fileSets>
-                  </inline>
-                </assembly>
-              </build>
               <run>
                 <ports>
                   <port>8081:8080</port>
@@ -225,11 +204,17 @@
   </profile>
 </profiles>
 
-  <distributionManagement>
+  <repositories>
+    <!-- Geotk is not deployed in Central repository. -->
     <repository>
-      <id>sonatype-nexus-staging</id>
-      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+      <id>geotoolkit</id>
+      <name>Geotk Modules</name>
+      <url>https://nexus.geomatys.com/repository/maven-public</url>
+      <layout>default</layout>
     </repository>
+  </repositories>
+
+  <distributionManagement>
     <site>
       <id>site</id>
       <url>scm:git:git@github.com:opengeospatial/ets-eo-geojson10.git</url>
