@@ -1,5 +1,11 @@
 = Release Notes
 
+== 1.1 (2025-01-08)
+
+Attention: Java 17 and Tomcat 10.1 are required.
+
+- https://github.com/opengeospatial/ets-eo-geojson10/issues/14[#14]: Migrate test suite to TEAM Engine 6 (Java 17)
+
 == 1.0 (2024-04-12)
 
 - https://github.com/opengeospatial/ets-eo-geojson10/pull/12[#12]: Set status of test suite to Final
