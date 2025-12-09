@@ -52,6 +52,8 @@ public class VerifyTestNGController {
 	public void doTestRun() throws Exception {
 		URL testSubject = getClass().getResource("/example-1-seasat.json");
 		this.testRunProps.setProperty(TestRunArg.IUT.toString(), testSubject.toURI().toString());
+		URL testSubjectCol = getClass().getResource("/example-1-seasat-collection.json");
+		this.testRunProps.setProperty(TestRunArg.COL.toString(), testSubjectCol.toURI().toString());
 		ByteArrayOutputStream outStream = new ByteArrayOutputStream(1024);
 		this.testRunProps.storeToXML(outStream, "Integration test");
 		Document testRunArgs = docBuilder.parse(new ByteArrayInputStream(outStream.toByteArray()));
